@@ -14,12 +14,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
+// ✅ ADDED: These are needed for JSON serialization & correct mapping
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // ✅ ADDED: Fixes lazy loading JSON error
 public class Product {
 
     @Id
@@ -42,5 +46,6 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonIgnore // ✅ ADDED: Prevents infinite loop in JSON response
     private Category category;
 }
