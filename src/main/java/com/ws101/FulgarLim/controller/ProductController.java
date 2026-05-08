@@ -1,7 +1,7 @@
 package com.ws101.FulgarLim.controller;
 
-import com.ws101.gumatay.estrada.gallano.model.Product;
-import com.ws101.gumatay.estrada.gallano.service.ProductService;
+import com.ws101.Fulgar,Lim.model.Product;
+import com.ws101.Fulgar,Lim.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
