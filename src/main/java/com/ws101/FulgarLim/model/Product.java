@@ -7,10 +7,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
+
 
 @Data
 @NoArgsConstructor
@@ -37,8 +40,7 @@ public class Product {
 
     private String imageUrl;
 
-    // Relationship to Category
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 }

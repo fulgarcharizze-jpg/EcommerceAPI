@@ -13,6 +13,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * OrderItem represents one product inside an order.
+ * Each order item belongs to one order and one product.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,12 +31,16 @@ public class OrderItem {
     private int quantity;
     private double priceAtPurchase;
 
-    // --- CONNECTION TO ORDER ---
+    /**
+     * Many order items belong to one order.
+     */
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    // --- CONNECTION TO PRODUCT ---
+    /**
+     * Many order items refer to one product.
+     */
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
